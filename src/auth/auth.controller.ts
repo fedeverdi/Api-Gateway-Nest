@@ -44,7 +44,6 @@ export class AuthController {
   @Get('me')
   @UseGuards(AuthGuard)
   async getMe(@Headers('Authorization') token: string) {
-    console.log('token', token);
     return await firstValueFrom(this.authService.send({ service: this._configService.get('AUTH_SERVICE_NAME'), cmd: 'get-me' }, { token: token?.replace('Bearer ', '') }));
   }
 
